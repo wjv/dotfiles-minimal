@@ -174,9 +174,9 @@ autoload -Uz surround
 zle -N delete-surround surround
 zle -N add-surround surround
 zle -N change-surround surround
-bindkey -a cs change-surround
-bindkey -a ds delete-surround
-bindkey -a ys add-surround
+bindkey -M vicmd cs change-surround \
+                 ds delete-surround \
+                 ys add-surround
 bindkey -M visual S add-surround
 
 # History
@@ -208,31 +208,27 @@ bindkey -M viins '^[[A' up-line-or-beginning-search \
 
 bindkey -M viins '^I' complete-word
 
-bindkey -M menuselect '^O' accept-and-infer-next-history
-bindkey -M menuselect '^U' undo
-
-bindkey -M menuselect '^P' accept-and-menu-complete
-bindkey -M menuselect '+' accept-and-menu-complete
-
-bindkey -M menuselect 'q' send-break
-bindkey -M menuselect '^[' send-break
-
+bindkey -M menuselect '^O' accept-and-infer-next-history \
+                      '^U' undo
+bindkey -M menuselect '^P' accept-and-menu-complete \
+                      '+'  accept-and-menu-complete
+bindkey -M menuselect 'q'  send-break \
+                      '^[' send-break
 bindkey -M menuselect '^[[Z' reverse-menu-complete
-
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect '0' vi-beginning-of-line
-bindkey -M menuselect '$' vi-end-of-line
-bindkey -M menuselect '^F' vi-forward-word
-bindkey -M menuselect '^B' vi-backward-word
-bindkey -M menuselect '{' vi-backward-blank-word
-bindkey -M menuselect '[' vi-backward-blank-word
-bindkey -M menuselect '}' vi-forward-blank-word
-bindkey -M menuselect ']' vi-forward-blank-word
-bindkey -M menuselect 'gg' beginning-of-history
-bindkey -M menuselect 'G' end-of-history
+bindkey -M menuselect 'h'  vi-backward-char \
+                      'j'  vi-down-line-or-history \
+                      'k'  vi-up-line-or-history \
+                      'l'  vi-forward-char \
+                      '0'  vi-beginning-of-line \
+                      '$'  vi-end-of-line \
+                      '^F' vi-forward-word \
+                      '^B' vi-backward-word \
+                      '{'  vi-backward-blank-word \
+                      '['  vi-backward-blank-word \
+                      '}'  vi-forward-blank-word \
+                      ']'  vi-forward-blank-word \
+                      'gg' beginning-of-history \
+                      'G'  end-of-history
 
 # }}}
 
