@@ -73,7 +73,7 @@ alias ls="ls --color=auto"
 # }}}
 
 
-### Zsh options  {{{
+### Zsh options {{{
 
 # Changing Directories
 setopt AUTO_CD
@@ -117,7 +117,7 @@ setopt NO_BEEP
 # }}}
 
 
-# ZLE completion  {{{
+### ZLE completion  {{{
 
 zstyle ':completion:*' completer _expand _complete
 
