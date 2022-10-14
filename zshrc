@@ -1,6 +1,6 @@
 # Minimal, portable .zshrc
 #
-# vim: fdm=marker fdc=1 nu et sw=2 tw=0
+# vim: ft=zsh fdm=marker fdc=1 nu et sw=2 tw=0
 
 
 ### Enviroment variables {{{
@@ -42,7 +42,11 @@ SHELL_SESSION_HISTORY=0
 ### Prompt {{{
 
 function zle-keymap-select {
-  ZLE_VIMODE="${${KEYMAP/vicmd/%%}/(main|viins)/$}"
+  if [[ ${KEYMAP} == "vicmd" ]]; then
+    ZLE_VIMODE=( '7' '%%' )
+  else
+    ZLE_VIMODE=( '0' '$' )
+  fi
   zle reset-prompt
 }
 zle -N zle-keymap-select
@@ -53,11 +57,11 @@ function zle-line-finish {
 }
 zle -N zle-line-finish
 
-export PROMPT=\
+PROMPT=\
 '%(1j.[%j] .)'\
-$'%n@%m'\
-$':%15<…<%~%<<'\
-'%(!.#.${ZLE_VIMODE-$}) '
+$'%{\e[${ZLE_VIMODE[1]}m%}%B%F{green}%m%f%b%{\e[0m%}:'\
+'%B%F{blue}%20<…<%~%<<%f%b'\
+'%(!.#.${ZLE_VIMODE[2]-$}) '
 
 # }}}
 
@@ -67,7 +71,11 @@ $':%15<…<%~%<<'\
 realpath() { for f in "$@"; do echo ${f}(:A); done }
 hgrep() { fc -Dlim "*$@*" 1 }
 
-alias ls="ls --color=auto"
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
 [[ $OSTYPE == darwin* ]] && alias top="top -ocpu -Otime"
 
 # }}}
