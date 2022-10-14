@@ -68,7 +68,7 @@ realpath() { for f in "$@"; do echo ${f}(:A); done }
 hgrep() { fc -Dlim "*$@*" 1 }
 
 alias ls="ls --color=auto"
-[[ $(uname) -eq "Darwin" ]] && alias top="top -ocpu -Otime"
+[[ $OSTYPE == darwin* ]] && alias top="top -ocpu -Otime"
 
 # }}}
 
