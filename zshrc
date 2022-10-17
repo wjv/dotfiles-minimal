@@ -173,7 +173,7 @@ for m in visual viopp; do
   for c in {a,i}{\',\",\`}; do
     bindkey -M $m $c select-quoted
   done
-  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do #'
     bindkey -M $m $c select-bracketed
   done
 done
