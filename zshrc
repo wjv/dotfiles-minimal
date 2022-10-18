@@ -164,7 +164,7 @@ autoload -U +X bashcompinit && bashcompinit
 # Vi mode
 
 bindkey -v
-bindkey -M vicmd '^[' undefined-key
+bindkey -sM vicmd '^[' '^G'
 
 autoload -U select-quoted select-bracketed
 zle -N select-quoted
@@ -187,15 +187,23 @@ bindkey -M vicmd cs change-surround \
                  ys add-surround
 bindkey -M visual S add-surround
 
-# History
+# General
 
-bindkey -M viins '^[.' insert-last-word
+bindkey -sM viins '^[b'     '^[[D' \
+                  '^[f'     '^[[C' \
+                  '^[[1;5D' '^[[D' \
+                  '^[[1;5C' '^[[C'
 
 bindkey -M vicmd '^B' push-line-or-edit
 bindkey -M viins '^B' push-line-or-edit
 
-bindkey -M vicmd '^T' end-of-list
-bindkey -M viins '^T' end-of-list
+autoload -Uz copy-earlier-word
+zle -N copy-earlier-word
+bindkey -M viins '^[;' copy-earlier-word
+
+# History
+
+bindkey -M viins '^[.' insert-last-word
 
 bindkey -M vicmd " " history-incremental-pattern-search-backward
 
@@ -211,10 +219,19 @@ bindkey -M viins '^[[A' up-line-or-beginning-search \
                  '^[[B' down-line-or-beginning-search \
                  '^[OB' down-line-or-beginning-search
 
+bindkey -M viins '^[,'    _history-complete-newer \
+                 '^[/'    _history-complete-older \
+                 '^[^[[A' _history-complete-older \
+                 '^[^[OA' _history-complete-older \
+                 '^[^[[B' _history-complete-newer \
+                 '^[^[OB' _history-complete-newer
 
 # Completion
 
 bindkey -M viins '^I' complete-word
+
+bindkey -M vicmd '^T' end-of-list
+bindkey -M viins '^T' end-of-list
 
 bindkey -M menuselect '^O' accept-and-infer-next-history \
                       '^U' undo
