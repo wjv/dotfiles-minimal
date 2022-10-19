@@ -260,11 +260,9 @@ bindkey -M menuselect 'h'  vi-backward-char \
 
 ### Generic config; cleanup and finish {{{
 
-if [[ -d "${HELPDIR}" ]]; then
-  unalias run-help
-  autoload run-help
-  alias help=run-help
-fi
+unalias run-help >/dev/null 2>&1
+autoload run-help
+alias help=run-help
 
 pathclean() {for p in $@; eval "$p=(\$^$p(-/N))"}
 pathclean path cdpath fpath manpath pkg_config_path
