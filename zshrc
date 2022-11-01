@@ -133,7 +133,7 @@ zstyle ':completion:*' completer _expand _complete
 zstyle ':completion:*' auto-description 'specify %d (auto-description)'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-dirs-first true
-zstyle ':completion:*' menu yes=long select=long select=2
+zstyle ':completion:*' menu auto select
 zstyle ':completion:*' verbose yes
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
